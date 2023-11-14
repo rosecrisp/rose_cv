@@ -63,7 +63,7 @@ const ResumeSection = () => {
                 <div className="name">North Carolina State University</div>
                 <div className="company">Raleigh, NC</div>
                 <p>
-                  {`Bachelor's`} Degree in Computer Science
+                   Completed 127 credits towards Bachelor of Science in Computer Science
                 </p>
               </div>
             </div>

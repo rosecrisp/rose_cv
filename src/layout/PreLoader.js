@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const PreLoader = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
