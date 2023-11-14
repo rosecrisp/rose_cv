@@ -2,6 +2,10 @@
 # Exit on any failure
 set -e
 
+# Load NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 # Use npm version 16.0.0
 nvm use 16.0.0
 
