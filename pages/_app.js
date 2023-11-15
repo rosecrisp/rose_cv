@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
         <link rel="stylesheet" href="css/animate.css" />
         <link rel="stylesheet" href="css/gradient.css" />
 
-        <title>RoseCrisp - vCard / Resume / CV</title>
+        <title>Rose Crisp - vCard / Resume / CV</title>
         <link rel="shortcut icon" href="images/favicons/favicon.ico" />
       </Head>
       <PreLoader />
