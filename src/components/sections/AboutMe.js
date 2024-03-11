@@ -1,10 +1,7 @@
 import { Fragment } from "react";
 const bio_ = ` <p>
 <strong>Hello! I’m Rose Crisp.</strong>
-As a Cloud Infrastructure Engineer with extensive experience in
- Kubernetes native application development and deployment,
- I am adept at hosting Learning Management Systems (LMS) solutions on the
- cloud and look forward to discussing how we can tailor these technologies to fit your unique ideas.
+As a Cloud Infrastructure Engineer with extensive experience in Kubernetes native application development and deployment, I am adept at hosting Learning Management Systems (LMS) solutions on the cloud. My skills extend beyond mere deployment; I excel in creating robust, scalable cloud infrastructures that ensure high availability and security for all types of applications. My passion for technology drives me to continuously explore cutting-edge tools and practices, enabling me to design and implement innovative solutions that optimize performance and user experience. With a keen eye for detail and a commitment to excellence, I thrive on turning challenging problems into seamless, efficient solutions. 
 </p>`;
 const AboutMe = ({ bio }) => {
   return (
@@ -27,9 +24,6 @@ const AboutMe = ({ bio }) => {
               <ul>
                 <li>
                   <strong>Residence . . . . .</strong> North Carolina, USA
-                </li>
-                <li>
-                  <strong>Freelance . . . . .</strong> Available
                 </li>
               </ul>
             </div>

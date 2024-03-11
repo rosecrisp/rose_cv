@@ -19,17 +19,20 @@ const ResumeSection = () => {
             <div className="resume-items">
               <div className="resume-item border-line-h active">
                 <div className="date">Feb, 2020 - Present</div>
-                <div className="name">Sr Software Engineer</div>
+                <div className="name">Sr Service Reliability Engineer</div>
                 <div className="company">Red Hat - Raleigh, NC</div>
                 <p>
-                   - Deliver tailored, high-touch engineering support by collaborating with partners to construct robust, enterprise-scale solutions leveraging Kubernetes Operators.
+                   - Cutting edge proof of concept workload deployment on OpenShift.
                 </p>  
                 <p>
-                   - Facilitate comprehensive training modules for partners to enhance proficiency with the Kubernetes Operator Framework..
+                   - Deliver tailored engineering support for enterprise-scale solutions using Kubernetes Operators.
                 </p>
                 <p>
-                   - Engineer and present functional Kubernetes Operator demonstrations to showcase potential applications and efficiencies.
+                   - Facilitate training modules for Kubernetes Operator Framework, enhancing partner proficiency.
                 </p>
+                <p>
+                   - Develop, build and deploy Kubernetes Operator demos on OpenShift clusters for presentations, and partners.
+                </p> 
               </div>
               <div className="resume-item border-line-h">
                 <div className="date">Apr,2019 - Nov,2019</div>
@@ -43,31 +46,15 @@ const ResumeSection = () => {
                 <div className="date">1994 - 2019</div>
                 <div className="name">Sr Software Engineer</div>
                 <div className="company">SAS Institute Inc.</div>
-                <p>- Boosted automation efficiency fourfold by modernizing legacy workflows with Jenkins and scripting, integrating with SQL database operations.</p>
-                <p>- Refined and maintained source management tools, developed web client interfaces in Node.js, and implemented strategic version control branching.</p>
-              </div>
+                Greenfield methodology, innovative approaches in CI/CD, infra and workflow design prioritize modern, efficient practices.
+                <p>- Ansible, Terraform, Bash, Vault, and OpenStack for efficient and flexible infra configuration, deployment, and maintenance.</p>
+                <p>- Automate CI/CD with Jenkins and GitLab workflow.</p>
+                <p>- Containerized application deployment with Helm charts for scalability and release management.</p>
+                <p>- BlackDuck and Checkmarx security scanning tool to ensure application security by identifying vulnerabilities early in the development cycle.</p>
+                              </div>
             </div>
           </div>
-          {/* education */}
-          <div className="col col-d-12 col-t-12 col-m-12 border-line-v">
-          {/* <div className="col col-d-6 col-t-6 col-m-12 border-line-v"> */}
-            <div className="resume-title border-line-h">
-              <div className="icon">
-                <i className="fa fa-university" />
-              </div>
-              <div className="name">Education</div>
-            </div>
-            <div className="resume-items">
-              <div className="resume-item border-line-h">
-                <div className="date">1989 - 1992</div>
-                <div className="name">North Carolina State University</div>
-                <div className="company">Raleigh, NC</div>
-                <p>
-                   Completed 127 credits towards Bachelor of Science in Computer Science
-                </p>
-              </div>
-            </div>
-          </div>
+           /
           <div className="clear" />
         </div>
       </div>

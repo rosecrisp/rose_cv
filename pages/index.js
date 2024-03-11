@@ -31,11 +31,15 @@ const RecentWorks = dynamic(
 
 const bio = `<p>
 <strong>Hello! I’m Rose Crisp.</strong>
-As a Cloud Infrastructure Engineer with extensive experience in Kubernetes
-native application development and deployment, I am adept at hosting Learning
-Management Systems (LMS) solutions on the cloud and look forward to discussing
-how we can tailor these technologies to fit your unique ideas.
-</p>`;
+</p></br>
+<p>
+Specializing in end-to-end infrastructure to deployment of containerized applications, I am a Cloud Infrastructure Engineer with extensive experience in Kubernetes native application design and optimization.
+</p></br>
+My passion for technology drives me to continuously explore cutting-edge tools and practices, enabling me to design and implement innovative solutions that optimize performance and user experience.
+<p></br>
+With a keen eye for detail and a commitment to excellence, I thrive on turning challenging problems into seamless, efficient solutions.
+
+</p></br>`;
 
 const services = [
   {
@@ -61,9 +65,8 @@ const services = [
 ];
 
 const animationText = [
-  "Kubernetes Engineer",
+  "Cloud Engineer",
   "LMS Hosting and Content Management",
-  "Freelancer",
 ];
 
 const Index3 = () => {
@@ -88,28 +91,12 @@ const Index3 = () => {
           <TypingAnimation data={animationText} />
           {/* profile socials */}
           <div className="social">
-            {/* <a target="_blank" rel="noreferrer" href="https://dribbble.com/">
-              <span className="fa fa-dribbble" />
-            </a>
-            <a target="_blank" rel="noreferrer" href="https://twitter.com/">
-              <span className="fa fa-twitter" />
-            </a> */}
             <a target="_blank" rel="noreferrer" href="https://github.com/rocrisp">
               <span className="fa fa-github" />
             </a>
             <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/rosecrisp">
               <span class="fa fa-linkedin" />
             </a>
-            {/* <a target="_blank" rel="noreferrer" href="https://www.spotify.com/">
-              <span className="fa fa-spotify" />
-            </a>
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href="https://stackoverflow.com/"
-            >
-              <span className="fa fa-stack-overflow" />
-            </a> */}
           </div>
           {/* profile buttons */}
           <div className="lnks">
@@ -123,11 +110,6 @@ const Index3 = () => {
       <ContentContainer>
         <About>
           <AboutMe bio={bio} />
-          {/* <Services serviceList={services} /> */}
-          {/* <Pricing /> */}
-          {/* <Clients /> */}
-          {/* <Testimonials /> */}
-          {/* <FunFact /> */}
         </About>
         <Resume>
           <ResumeSection />

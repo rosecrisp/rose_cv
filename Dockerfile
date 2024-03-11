@@ -7,6 +7,8 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
+# npm ci faster and more efficient than npm install because it doesn't perform any dependency 
+# resolution or conflict resolution, making it suitable for automated and reproducible builds.
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \

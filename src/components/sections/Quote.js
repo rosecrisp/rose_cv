@@ -17,13 +17,10 @@ const Quote = () => {
                 </div>
               </div>
               <div className="user">
-                <div className="img">
-                  <img src="images/logo.png" alt="RoseCrisp Adlard" />
-                </div>
-                <div className="info">
+                
+                {/* <div className="info">
                   <div className="name">Rose Crisp</div>
-                  <div className="company">wwww.aprendeconsulting.com</div>
-                </div>
+                </div> */}
                 <div className="clear" />
               </div>
             </div>
