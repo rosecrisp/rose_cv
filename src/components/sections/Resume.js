@@ -8,7 +8,7 @@ const jobs = [
     bullets: [
       "Design and deploy proof-of-concept AI workloads on OpenShift, including GPU-backed RAG chatbots and LLM serving with KServe and vLLM on OpenShift AI.",
       "Partner with ISVs to get their applications certified and listed in the Red Hat Ecosystem Catalog, from the first proof of concept through certification.",
-      "Contribute to and run the Red Hat Best Practices for Kubernetes test suite (certsuite). I add new test cases and validate 50+ partner operators on every new OpenShift release, alerting stakeholders when an operator doesn't pass certification.",
+      "Maintain and run the Red Hat Best Practices for Kubernetes test suite (certsuite), adding new test cases and validating 50+ partner operators on every new OpenShift release, then alerting stakeholders when an operator doesn't pass certification.",
       "Lead Red Hat's Kubernetes Operator Framework workshops, training partners to build, package, and certify operators.",
       "Built a Red Hat Developer Hub (Backstage) golden-path template that automates GitOps repo scaffolding, Argo CD, and Helm deployments for GPU-backed RAG workloads, turning a multi-team manual setup into a self-service flow (DevConf.US 2025).",
     ],
@@ -44,8 +44,10 @@ const jobs = [
   },
 ];
 
-/* Split lead phrase (opening sentence, first early comma, or first ~3 words) for accent styling; wording unchanged. */
+/* Bold through "(certsuite)" when present; otherwise the opening sentence, first early comma, or first ~3 words. Wording unchanged. */
 const splitBulletLead = (text) => {
+  const certsuite = text.match(/^(.+?\(certsuite\))(,\s*[\s\S]*)$/);
+  if (certsuite) return [certsuite[1], certsuite[2]];
   const sentence = text.match(/^(.{20,120}?\.)\s+(\S[\s\S]*)$/);
   if (sentence) return [sentence[1], " " + sentence[2]];
   const comma = text.indexOf(",");
