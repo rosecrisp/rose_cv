@@ -8,6 +8,7 @@ const jobs = [
     bullets: [
       "Design and deploy proof-of-concept AI workloads on OpenShift, including GPU-backed RAG chatbots and LLM serving with KServe and vLLM on OpenShift AI.",
       "Partner with ISVs to get their applications certified and listed in the Red Hat Ecosystem Catalog, from the first proof of concept through certification.",
+      "Contribute to and run the Red Hat Best Practices for Kubernetes test suite (certsuite). I add new test cases and validate 50+ partner operators on every new OpenShift release, alerting stakeholders when an operator doesn't pass certification.",
       "Lead Red Hat's Kubernetes Operator Framework workshops, training partners to build, package, and certify operators.",
       "Built a Red Hat Developer Hub (Backstage) golden-path template that automates GitOps repo scaffolding, Argo CD, and Helm deployments for GPU-backed RAG workloads, turning a multi-team manual setup into a self-service flow (DevConf.US 2025).",
     ],
@@ -43,8 +44,10 @@ const jobs = [
   },
 ];
 
-/* Split lead phrase (first ~3 words, or through first early comma) for accent styling; wording unchanged. */
+/* Split lead phrase (opening sentence, first early comma, or first ~3 words) for accent styling; wording unchanged. */
 const splitBulletLead = (text) => {
+  const sentence = text.match(/^(.{20,120}?\.)\s+(\S[\s\S]*)$/);
+  if (sentence) return [sentence[1], " " + sentence[2]];
   const comma = text.indexOf(",");
   if (comma > 8 && comma < 48) {
     return [text.slice(0, comma), text.slice(comma)];
