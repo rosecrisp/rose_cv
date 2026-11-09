@@ -1,0 +1,92 @@
+# .github/workflows/release.yml
+name: Release
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      rollback_container:
+        description: "Optional: name of stopped container to start (e.g. roseresume-v23). Skips build/push."
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE: ghcr.io/rosecrisp/rose_cv
+
+jobs:
+  build-and-push:
+    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.rollback_container == '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ env.IMAGE }}:${{ github.sha }}
+            ${{ env.IMAGE }}:latest
+
+  deploy:
+    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.rollback_container == '' }}
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Deploy over SSH
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          install -m 600 /dev/null key
+          printf '%s\n' "$DEPLOY_KEY" > key
+          ssh -i key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new \
+            "${DEPLOY_USER}@${DEPLOY_HOST}" "$SHA"
+          rm -f key
+
+      - name: Post-deploy checks
+        run: |
+          set -euo pipefail
+          for u in https://rosecrisp.com/ https://www.rosecrisp.com/; do
+            curl -fsS "$u" -o page.html
+            code=$(curl -fsS -o /dev/null -w '%{http_code}' "$u")
+            test "$code" = "200"
+            if grep -EIq '919[[:space:].-]*360|360-1189|\(919\)' page.html; then
+              echo "Phone number on $u"; exit 1
+            fi
+          done
+          n=$(grep -o 'class="name talk-title"' page.html | wc -l | tr -d ' ')
+          test "$n" -eq 8
+          linked=$(grep -oE 'class="name talk-title">[[:space:]]*<a ' page.html | wc -l | tr -d ' ')
+          test "$linked" -eq 7
+
+  rollback:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.rollback_container != '' }}
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Rollback instructions
+        env:
+          TARGET: ${{ github.event.inputs.rollback_container }}
+        run: |
+          set -euo pipefail
+          echo "The deploy key is forced-command only and cannot open a shell."
+          echo "Run this from an admin SSH session (ec2-user), not Actions:"
+          echo "  PREV=\$(sudo docker ps --filter publish=3000 --format '{{.Names}}')"
+          echo "  sudo docker stop \"\$PREV\""
+          echo "  sudo docker start ${TARGET}"
+          echo "  curl -fsS -o /dev/null -w '%{http_code}\n' http://127.0.0.1:3000/"
+          echo "Requested rollback target: ${TARGET}"
