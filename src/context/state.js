@@ -1,10 +1,12 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import Context from "./context";
 
 const type = {
   NAV: "NAV",
   SIDEBAR: "SIDEBAR",
 };
+
+const sections = ["about", "resume", "works", "blog", "contacts", "blog-post"];
 
 const navReducer = (state, action) => {
   switch (action.type) {
@@ -26,7 +28,7 @@ const navReducer = (state, action) => {
 
 const State = (props) => {
   const initialState = {
-    nav: "about",
+    nav: "resume",
     sidebar: false,
   };
   const [state, dispatch] = useReducer(navReducer, initialState);
@@ -43,6 +45,19 @@ const State = (props) => {
       payload: value,
     });
   };
+
+  useEffect(() => {
+    const applyHash = () => {
+      const hash = (window.location.hash || "").replace(/^#/, "");
+      if (hash && sections.includes(hash)) {
+        changeNav(hash);
+      }
+    };
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    return () => window.removeEventListener("hashchange", applyHash);
+  }, []);
+
   return (
     <Context.Provider
       value={{
