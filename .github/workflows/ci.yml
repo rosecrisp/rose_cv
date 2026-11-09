@@ -1,0 +1,37 @@
+# .github/workflows/ci.yml
+name: CI
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -t rose_cv:pr .
+
+      - name: Run container
+        run: |
+          docker run -d --name site -p 3000:3000 rose_cv:pr
+          for i in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:3000/ >/dev/null && break
+            sleep 2
+          done
+
+      - name: Checks
+        run: |
+          set -euo pipefail
+          curl -fsS http://127.0.0.1:3000/ -o page.html
+          curl -fsS -o /dev/null -w '%{http_code}\n' http://127.0.0.1:3000/doc/RoseCrisp_cv.pdf | grep -q 200
+          # Phone: same family of patterns as prior live checks (no bare loose digits)
+          if grep -EIq '919[[:space:].-]*360|360-1189|\(919\)' page.html; then
+            echo "Phone number found"; exit 1
+          fi
+          # Talks: exact Resume markup
+          n=$(grep -o 'class="name talk-title"' page.html | wc -l | tr -d ' ')
+          test "$n" -eq 8
+          linked=$(grep -oE 'class="name talk-title">[[:space:]]*<a ' page.html | wc -l | tr -d ' ')
+          test "$linked" -eq 7
