@@ -33,12 +33,13 @@ const bio = `<p>
 <strong>Hello! I’m Rose Crisp.</strong>
 </p></br>
 <p>
-Specializing in end-to-end infrastructure to deployment of containerized applications, I am a Cloud Infrastructure Engineer with extensive experience in Kubernetes native application design and optimization.
+I’m an engineer-educator with 25+ years in software and infrastructure automation, including 6 years at Red Hat building, validating, and teaching cloud-native and AI platforms.
 </p></br>
-My passion for technology drives me to continuously explore cutting-edge tools and practices, enabling me to design and implement innovative solutions that optimize performance and user experience.
-<p></br>
-With a keen eye for detail and a commitment to excellence, I thrive on turning challenging problems into seamless, efficient solutions.
-
+<p>
+I stand up GPU-backed AI stacks on Kubernetes and OpenShift, from vLLM inference on OpenShift AI to RAG and agent apps, and automate them with Go operators, Helm, and GitOps.
+</p></br>
+<p>
+Then I turn working deployments into hands-on workshops, demos, and conference talks.
 </p></br>`;
 
 const services = [
@@ -65,8 +66,8 @@ const services = [
 ];
 
 const animationText = [
-  "Cloud Engineer",
-  "LMS Hosting and Content Management",
+  "Senior Engineer & Technical Educator",
+  "AI Infrastructure on Kubernetes",
 ];
 
 const Index3 = () => {
@@ -95,7 +96,7 @@ const Index3 = () => {
               <span className="fa fa-github" />
             </a>
             <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/rosecrisp">
-              <span class="fa fa-linkedin" />
+              <span className="fa fa-linkedin" />
             </a>
           </div>
           {/* profile buttons */}

@@ -21,9 +21,6 @@ const ContactInfo = () => {
               <li>
                 <strong>Email . . . . .</strong> rose.crisp.info@gmail.com
               </li>
-              <li>
-                <strong>Phone . . . . .</strong> +1 919 360 1189
-              </li>
             </ul>
           </div>
         </div>

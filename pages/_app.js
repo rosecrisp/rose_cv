@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="Rose Crisp" />
         <meta name="description" content="Rose Crisp - vCard / Resume / CV" />
-        <meta name="keywords" content="Host websites, Rose Crisp portfolio and resume, LMS, OpenedX, open edx, host LMS, host landing page" />
+        <meta name="keywords" content="Rose Crisp, resume, Kubernetes, OpenShift, OpenShift AI, vLLM, KServe, RAG, Kubernetes Operators, GitOps, technical educator" />
         <link
           href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet"

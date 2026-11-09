@@ -1,60 +1,233 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
+const jobs = [
+  {
+    date: "02/2020 - Present",
+    title: "Senior Software Engineer",
+    company: "Red Hat, Raleigh, NC",
+    lead: "Senior Software Engineer and Educator; partner engineering for OpenShift.",
+    bullets: [
+      "Design and deploy proof-of-concept AI workloads on OpenShift, including GPU-backed RAG chatbots and LLM serving with KServe and vLLM on OpenShift AI.",
+      "Own engineering work for ISV enablement and partner certification, from first proof of concept through certification.",
+      "Lead Red Hat's Kubernetes Operator Framework workshops, training partners to build, package, and certify operators.",
+      "Built a Red Hat Developer Hub (Backstage) golden-path template that automates GitOps repo scaffolding, Argo CD, and Helm deployments for GPU-backed RAG workloads, turning a multi-team manual setup into a self-service flow (DevConf.US 2025).",
+    ],
+  },
+  {
+    date: "04/2019 - 12/2019",
+    title: "Senior Software Developer",
+    company: "SAS Institute Inc., Cary, NC",
+    bullets: [
+      "Built infrastructure automation with Ansible, Terraform, Bash, HashiCorp Vault, and OpenStack, and CI/CD pipelines in Jenkins and GitLab with automated tests and security scans.",
+      "Containerized application deployments on Kubernetes and Docker, managed with Helm charts.",
+    ],
+  },
+  {
+    date: "05/2015 - 04/2019",
+    title: "Senior Software Developer",
+    company: "SAS Institute Inc., Cary, NC",
+    bullets: [
+      "Automated the SAS software escrow process with Jenkins, Perl, Bash, and MySQL, increasing production by 400%.",
+      "Managed 600+ N+1 software feature releases per year, from infrastructure setup to delivery.",
+    ],
+  },
+  {
+    date: "06/1994 - 05/2015",
+    title: "Earlier roles",
+    company: "SAS Institute Inc., Cary, NC",
+    bullets: [
+      "Software Developer, Source Management",
+      "Software Tester, Source Management",
+      "Associate Systems Administrator (1996-1997)",
+      "Technical Student (1994-1996)",
+    ],
+  },
+];
+
+/* Split lead phrase (first ~3 words, or through first early comma) for accent styling; wording unchanged. */
+const splitBulletLead = (text) => {
+  const comma = text.indexOf(",");
+  if (comma > 8 && comma < 48) {
+    return [text.slice(0, comma), text.slice(comma)];
+  }
+  const m = text.match(/^(\S+(?:\s+\S+){0,2})([\s\S]*)$/);
+  if (m) return [m[1], m[2] || ""];
+  return [text, ""];
+};
+
+const JobItem = ({ job, index, open, onToggle, last }) => {
+  const id = `job-${index}`;
+  return (
+    <div
+      className={`resume-item job-accordion${last ? "" : " border-line-h"}${
+        open ? " active is-open" : ""
+      }`}
+    >
+      <h3 className="job-accordion-heading">
+        <button
+          type="button"
+          className="job-accordion-toggle"
+          aria-expanded={open}
+          aria-controls={`${id}-panel`}
+          id={`${id}-button`}
+          onClick={onToggle}
+        >
+          <span className="job-accordion-text">
+            <span className="date">{job.date}</span>
+            <span className="name">{job.title}</span>
+            <span className="company">{job.company}</span>
+          </span>
+          <span className="job-accordion-chevron fa fa-chevron-down" aria-hidden="true" />
+        </button>
+      </h3>
+      <div
+        id={`${id}-panel`}
+        role="region"
+        aria-labelledby={`${id}-button`}
+        className="job-accordion-panel"
+        aria-hidden={!open}
+      >
+        <div className="job-accordion-inner">
+          {job.lead && (
+            <p className="job-lead">
+              <em>{job.lead}</em>
+            </p>
+          )}
+          <ul className="job-bullets">
+            {job.bullets.map((b) => {
+              const [leadPhrase, rest] = splitBulletLead(b);
+              return (
+                <li key={b} className="job-bullet">
+                  <span className="job-bullet-marker" aria-hidden="true" />
+                  <span className="job-bullet-text">
+                    <strong className="job-bullet-lead">{leadPhrase}</strong>
+                    {rest}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ResumeSection = () => {
+  // Current job (index 0) open by default; the rest start collapsed.
+  const [openJobs, setOpenJobs] = useState([0]);
+  const toggle = (i) =>
+    setOpenJobs((cur) => (cur.includes(i) ? cur.filter((x) => x !== i) : [...cur, i]));
   return (
     <Fragment>
       <div className="content resume">
         {/* title */}
         <div className="title">Resume</div>
         {/* content */}
-        <div className="row">
-          {/* experience */}
-          <div className="col col-d-12 col-t-12 col-m-12 border-line-v">
-          {/* <div className="col col-d-6 col-t-6 col-m-12 border-line-v"> */}
+        <div className="row resume-split">
+          {/* experience: header stays, job list scrolls on its own (desktop) */}
+          <div className="col col-d-6 col-t-6 col-m-12 border-line-v">
             <div className="resume-title border-line-h">
               <div className="icon">
                 <i className="fa fa-briefcase" />
               </div>
               <div className="name">Experience</div>
             </div>
-            <div className="resume-items">
-              <div className="resume-item border-line-h active">
-                <div className="date">Feb, 2020 - Present</div>
-                <div className="name">Sr Service Reliability Engineer</div>
-                <div className="company">Red Hat - Raleigh, NC</div>
-                <p>
-                   - Cutting edge proof of concept workload deployment on OpenShift.
-                </p>  
-                <p>
-                   - Deliver tailored engineering support for enterprise-scale solutions using Kubernetes Operators.
-                </p>
-                <p>
-                   - Facilitate training modules for Kubernetes Operator Framework, enhancing partner proficiency.
-                </p>
-                <p>
-                   - Develop, build and deploy Kubernetes Operator demos on OpenShift clusters for presentations, and partners.
-                </p> 
-              </div>
-              <div className="resume-item border-line-h">
-                <div className="date">Apr,2019 - Nov,2019</div>
-                <div className="name">Sr Sofware Engineer</div>
-                <div className="company">SAS Institute Inc.</div>
-                <p>- Streamlined project delivery by implementing a CI/CD strategy with Jenkins and GitLab, automating tests, and securing code with BlackDuck and Checkmarx scans.</p>
-                <p>- Enhanced deployment processes using Kubernetes and Docker, managed with Helm for scalability.</p>
-                <p>- Developed infrastructure management scripts utilizing Ansible, Terraform, and Bash, alongside K8s and Helm, to optimize deployment and operations.</p>
-              </div>
-              <div className="resume-item">
-                <div className="date">1994 - 2019</div>
-                <div className="name">Sr Software Engineer</div>
-                <div className="company">SAS Institute Inc.</div>
-                Greenfield methodology, innovative approaches in CI/CD, infra and workflow design prioritize modern, efficient practices.
-                <p>- Ansible, Terraform, Bash, Vault, and OpenStack for efficient and flexible infra configuration, deployment, and maintenance.</p>
-                <p>- Automate CI/CD with Jenkins and GitLab workflow.</p>
-                <p>- Containerized application deployment with Helm charts for scalability and release management.</p>
-                <p>- BlackDuck and Checkmarx security scanning tool to ensure application security by identifying vulnerabilities early in the development cycle.</p>
-                              </div>
+            <div className="resume-pane" tabIndex={0} aria-label="Experience (scrollable)">
+            <div className="resume-items exp-job-cards">
+              {jobs.map((job, i) => (
+                <JobItem
+                  key={job.date}
+                  job={job}
+                  index={i}
+                  open={openJobs.includes(i)}
+                  onToggle={() => toggle(i)}
+                  last={i === jobs.length - 1}
+                />
+              ))}
+            </div>
             </div>
           </div>
-           /
+          {/* talks + education: its own pane, does not move when Experience scrolls */}
+          <div className="col col-d-6 col-t-6 col-m-12 border-line-v">
+            <div className="resume-pane" tabIndex={0} aria-label="Talks and education (scrollable)">
+            <div className="resume-title border-line-h">
+              <div className="icon">
+                <i className="fa fa-microphone" />
+              </div>
+              <div className="name">Talks &amp; Workshops</div>
+            </div>
+            <div className="resume-items">
+              <div className="resume-item border-line-h active">
+                <div className="date">2025</div>
+                <div className="name talk-title">
+                  <a href="https://pretalx.devconf.info/devconf-us-2025/talk/XD9U37/" target="_blank" rel="noopener noreferrer">Zero to GitOps: Automating RAG Workloads with Backstage Templates</a>
+                </div>
+                <div className="company">DevConf.US (Boston)</div>
+              </div>
+              <div className="resume-item border-line-h">
+                <div className="date">2024</div>
+                <div className="name talk-title">
+                  <a href="https://pretalx.com/devconf-cz-2024/talk/YE8FEJ/" target="_blank" rel="noopener noreferrer">Developing your Level 5 Operator in 75 Minutes</a>
+                </div>
+                <div className="company">DevConf.CZ (Brno) — workshop, co-lead with Yuri Oliveira Sa and Matthias Goerens</div>
+              </div>
+              <div className="resume-item border-line-h">
+                <div className="date">2024</div>
+                <div className="name talk-title">
+                  <a href="https://cfp.cfgmgmtcamp.org/2024/talk/TZ7KSB/" target="_blank" rel="noopener noreferrer">Simplifying Cloud Deployments with Ansible for React Next.js on AWS EC2</a>
+                </div>
+                <div className="company">Config Management Camp (Ghent) — with Sid Kattoju</div>
+              </div>
+              <div className="resume-item border-line-h">
+                <div className="date">2023</div>
+                <div className="name talk-title">
+                  <a href="https://2023.platformcon.com/talks/unlocking-the-power-of-kubernetes-create-your-own-resources-with-crds" target="_blank" rel="noopener noreferrer">Unlocking the Power of Kubernetes: Create Your Own Resources with CRDs</a>
+                </div>
+                <div className="company">PlatformCon</div>
+              </div>
+              <div className="resume-item border-line-h">
+                <div className="date">2023</div>
+                <div className="name talk-title">
+                  <a href="https://developerweekeurope2023.sched.com/event/1Kz5A/open-talk-unlocking-the-power-of-kubernetes-create-your-own-resources-with-crds" target="_blank" rel="noopener noreferrer">Unlocking the Power of Kubernetes: Create Your Own Resources with CRDs</a>
+                </div>
+                <div className="company">DeveloperWeek Europe</div>
+              </div>
+              <div className="resume-item border-line-h">
+                <div className="date">2023</div>
+                <div className="name talk-title">
+                  <a href="https://www.womentech.net/video/unlocking-power-kubernetes-create-your-own-resources-crds" target="_blank" rel="noopener noreferrer">Unlocking the Power of Kubernetes: Create Your Own Resources with CRDs</a>
+                </div>
+                <div className="company">WomenTech Global Conference</div>
+              </div>
+              <div className="resume-item border-line-h">
+                <div className="date">2023</div>
+                <div className="name talk-title">Create Your Own Resources with CRDs</div>
+                <div className="company">THAT Conference</div>
+              </div>
+              <div className="resume-item">
+                <div className="date">2022</div>
+                <div className="name talk-title">
+                  <a href="https://cfp.cloud-native.rejekts.io/cloud-native-rejekts-eu-valencia-2022/talk/D7ZXTG/" target="_blank" rel="noopener noreferrer">From Zero to Auto Pilot: Exploring Kubernetes Operator Capability Levels</a>
+                </div>
+                <div className="company">Cloud Native Rejekts EU (Valencia) — with Sid Kattoju, Yuri Oliveira Sa, Manna Kong, and Soundharya Pabba</div>
+              </div>
+            </div>
+            <div className="resume-title border-line-h">
+              <div className="icon">
+                <i className="fa fa-university" />
+              </div>
+              <div className="name">Education</div>
+            </div>
+            <div className="resume-items">
+              <div className="resume-item border-line-h active">
+                <div className="date">1989 - 1992</div>
+                <div className="name">North Carolina State University</div>
+                <div className="company">Raleigh, NC</div>
+                <p>Computer Science coursework toward a B.S. (127 credits completed)</p>
+              </div>
+            </div>
+            </div>
+          </div>
           <div className="clear" />
         </div>
       </div>
