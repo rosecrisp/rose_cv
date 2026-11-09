@@ -61,3 +61,322 @@ img.mfp-img {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+/* Resume card: a second resume-title stacked under a resume-items block in the
+   same column (Education -> Talks & Workshops). The theme pulls .resume-title .icon
+   up 15px with a white background, and the last .resume-item has padding-bottom:0,
+   so without this gap the icon/heading covers the previous item's last line.
+   Gap matches the theme's 30px .resume-item rhythm plus the 15px icon offset. */
+.resume-items + .resume-title {
+  margin-top: 45px;
+}
+
+/* ---- Experience accordion (preview) ----
+   Each job header is a <button aria-expanded> inside an <h3>; the panel
+   expands with a grid-rows transition. Reuses the theme's .date/.name/.company. */
+.job-accordion-heading {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+.resume-items .job-accordion-toggle,
+.resume-items .job-accordion-toggle:focus {
+  display: flex;
+  height: auto;
+  line-height: inherit;
+  font-size: inherit;
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.resume-items .job-accordion-toggle:focus-visible {
+  outline: 2px solid #78cc6d;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.job-accordion-text {
+  display: block;
+  min-width: 0;
+}
+.resume-items .resume-item.job-accordion .name,
+.resume-items .resume-item.job-accordion .company {
+  display: block;
+}
+.resume-items .resume-item.job-accordion .company {
+  margin-bottom: 0;
+}
+.job-accordion-toggle:hover .name {
+  color: #78cc6d;
+}
+.job-accordion-chevron {
+  flex: 0 0 auto;
+  margin-top: 30px;
+  font-size: 13px;
+  color: #999999;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.job-accordion.is-open .job-accordion-chevron {
+  transform: rotate(180deg);
+  color: #78cc6d;
+}
+.job-accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 0.35s ease, visibility 0s linear 0.35s;
+}
+.job-accordion.is-open .job-accordion-panel {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 0.35s ease, visibility 0s linear 0s;
+}
+.job-accordion-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+.job-accordion.is-open .job-accordion-inner {
+  padding-top: 11px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .job-accordion-panel,
+  .job-accordion-chevron {
+    transition: none;
+  }
+}
+
+/* ---- Resume: independent column scrolling (desktop preview) ----
+   >=1024px the card has a fixed height (theme). Each column becomes its own
+   scroll pane sized to the card's visible area, so scrolling Experience
+   leaves Education/Talks in place (and vice versa). Below 1024px the theme
+   stacks the card and the page scrolls normally, so nothing changes there. */
+@media (min-width: 1024px) {
+  .card-inner {
+    container-type: size;
+  }
+  .resume-split {
+    display: flex;
+    align-items: stretch;
+    /* fallback for browsers without container units */
+    height: 470px;
+    /* card height - card padding - "Resume" title block - breathing room */
+    height: calc(100cqh - 30px - 81px - 10px);
+  }
+  .resume-split > .col {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding-bottom: 0;
+  }
+  .resume-split > .clear {
+    display: none;
+  }
+  .resume-split .resume-pane {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 12px;
+    padding-bottom: 20px;
+    scrollbar-width: thin;
+  }
+  .resume-split .resume-pane:focus-visible {
+    outline: 2px solid #78cc6d;
+    outline-offset: 2px;
+  }
+}
+
+/* Talk titles: Rose asked for bold on each talk title */
+.resume-items .resume-item .name.talk-title {
+  font-weight: 700;
+  text-transform: none; /* titles are sentence case, not uppercase */
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.resume-items .resume-item .name.talk-title a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 700;
+}
+.resume-items .resume-item .name.talk-title a:hover,
+.resume-items .resume-item .name.talk-title a:focus-visible {
+  color: #78cc6d;
+  text-decoration: underline;
+}
+
+/* ---- Experience job cards — Option F (live) ----
+   Green header + green-tint panel; each bullet a white mini-card.
+   Bold lead phrases; real markers. Accordion/scroll unchanged. */
+.exp-job-cards {
+  --exp-header-bg: #2f6b36;
+  --exp-header-fg: #ffffff;
+  --exp-header-muted: rgba(255, 255, 255, 0.88);
+  --exp-header-date-border: rgba(255, 255, 255, 0.75);
+  --exp-header-date-fg: #ffffff;
+  --exp-body-bg: #d8edd9;
+  --exp-body-fg: #1a2e1c;
+  --exp-chevron: #ffffff;
+  --exp-accent: #2f6b36;
+  --exp-marker: #3d8a45;
+  --exp-bullet-row-bg: #ffffff;
+  --exp-bullet-row-border: rgba(61, 138, 69, 0.22);
+  --exp-lead-fg: #4a6350;
+  --exp-card-radius: 10px;
+  --exp-card-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  --exp-card-gap: 16px;
+}
+
+.exp-job-cards > .resume-item.job-accordion {
+  margin: 0 0 var(--exp-card-gap) 0;
+  overflow: hidden;
+  border-radius: var(--exp-card-radius);
+  box-shadow: var(--exp-card-shadow);
+  background: var(--exp-body-bg);
+}
+.exp-job-cards > .resume-item.job-accordion:last-child {
+  margin-bottom: 0;
+}
+.exp-job-cards > .resume-item.job-accordion:after,
+.exp-job-cards > .resume-item.job-accordion.border-line-h:after {
+  display: none !important;
+}
+.exp-job-cards .job-accordion-heading {
+  margin: 0;
+  background: var(--exp-header-bg);
+}
+.exp-job-cards .job-accordion-toggle,
+.exp-job-cards .job-accordion-toggle:focus {
+  width: 100%;
+  text-align: left;
+  color: var(--exp-header-fg) !important;
+  background: transparent !important;
+  border: 0;
+  padding: 14px 16px !important;
+  cursor: pointer;
+}
+.exp-job-cards .job-accordion-toggle:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+.exp-job-cards .job-accordion-toggle:hover .name {
+  color: #fff !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.exp-job-cards .resume-item.job-accordion .date {
+  margin: 0 0 8px 0 !important;
+  color: var(--exp-header-date-fg) !important;
+  border-color: var(--exp-header-date-border) !important;
+  background: transparent !important;
+}
+.exp-job-cards .resume-item.job-accordion.active .date,
+.exp-job-cards .resume-item.job-accordion.is-open .date {
+  border-color: #fff !important;
+  color: #fff !important;
+}
+.exp-job-cards .resume-item.job-accordion .name {
+  color: var(--exp-header-fg) !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  font-size: 16px !important;
+  line-height: 1.3 !important;
+}
+.exp-job-cards .resume-item.job-accordion .company {
+  color: var(--exp-header-muted) !important;
+  margin: 4px 0 0 0 !important;
+  text-transform: none !important;
+  font-size: 13px !important;
+}
+.exp-job-cards .job-accordion-chevron {
+  color: var(--exp-chevron) !important;
+  margin-top: 28px !important;
+}
+.exp-job-cards .job-accordion.is-open .job-accordion-chevron {
+  color: var(--exp-chevron) !important;
+}
+.exp-job-cards .job-accordion-panel {
+  background: var(--exp-body-bg);
+  color: var(--exp-body-fg);
+  border-left: 4px solid #3d8a45;
+}
+.exp-job-cards .job-accordion-inner {
+  padding: 0 16px;
+  color: var(--exp-body-fg);
+}
+.exp-job-cards .job-accordion.is-open .job-accordion-inner {
+  padding: 14px 16px 16px 16px !important;
+}
+.exp-job-cards .job-lead {
+  margin: 0 0 12px 0 !important;
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  color: var(--exp-lead-fg) !important;
+  opacity: 0.92;
+}
+.exp-job-cards .job-lead em {
+  font-style: italic;
+  font-weight: 400;
+  color: inherit !important;
+}
+.exp-job-cards .job-bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.exp-job-cards .job-bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  padding: 10px 12px;
+  background: var(--exp-bullet-row-bg);
+  border: 1px solid var(--exp-bullet-row-border);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.exp-job-cards .job-bullet-marker {
+  flex: 0 0 14px;
+  width: 14px;
+  height: 14px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background: var(--exp-marker);
+  box-shadow: inset 0 0 0 3px var(--exp-bullet-row-bg);
+  position: relative;
+}
+.exp-job-cards .job-bullet-text {
+  flex: 1;
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: var(--exp-body-fg);
+  font-weight: 500;
+}
+.exp-job-cards .job-bullet-lead {
+  font-weight: 700;
+  color: var(--exp-accent);
+}
+@media (max-width: 560px) {
+  .exp-job-cards > .resume-item.job-accordion {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .exp-job-cards .job-accordion-toggle,
+  .exp-job-cards .job-accordion-toggle:focus {
+    padding: 12px 14px !important;
+  }
+}

@@ -15,83 +15,56 @@ const Skills = () => {
         <div className="title">My Skills</div>
         {/* content */}
         <div className="row">
-          {/* skill item */}
           <div className="col col-d-6 col-t-6 col-m-12 border-line-v">
-            <div className="skills-list">
+            <div className="skills-list list">
               <div className="skill-title border-line-h">
                 <div className="icon">
-                  <i className="fa fa-paint-brush" />
+                  <i className="fa fa-cloud" />
                 </div>
-                <div className="name">Cloud Infrastructure</div>
+                <div className="name">Platforms & AI</div>
               </div>
               <ul>
-                <li className="border-line-h">
-                  <div className="name">AWS</div>
-                  {/* <div className="progress">
-                    <div className="percentage" style={{ width: "90%" }} />
-                  </div> */}
-                </li>
-                <li className="border-line-h">
-                  <div className="name">Terraform</div>
-                  {/* <div className="progress">
-                    <div className="percentage" style={{ width: "65%" }} />
-                  </div> */}
-                </li>
-                <li className="border-line-h">
-                  <div className="name">Ansible</div>
-                  {/* <div className="progress">
-                    <div className="percentage" style={{ width: "75%" }} />
-                  </div> */}
+                <li>
+                  <div className="name">Kubernetes & Red Hat OpenShift</div>
                 </li>
                 <li>
-                  <div className="name">Kubernetes</div>
-                  {/* <div className="progress">
-                    <div className="percentage" style={{ width: "85%" }} />
-                  </div> */}
+                  <div className="name">Red Hat OpenShift AI (GPU & CPU)</div>
+                </li>
+                <li>
+                  <div className="name">LLM inference serving: vLLM & KServe</div>
+                </li>
+                <li>
+                  <div className="name">RAG & AI agents (Llama Stack)</div>
                 </li>
               </ul>
             </div>
           </div>
-          {/* skill item */}
           <div className="col col-d-6 col-t-6 col-m-12 border-line-v">
-            <div className="skills-list">
+            <div className="skills-list list">
               <div className="skill-title border-line-h">
                 <div className="icon">
-                  <i className="fa fa-flag" />
+                  <i className="fa fa-cogs" />
                 </div>
-                <div className="name">Languages</div>
+                <div className="name">Automation & Operations</div>
               </div>
               <ul>
-                <li className="border-line-h">
-                  <div className="name">English</div>
-                  {/* <div className="progress">
-                    <div className="percentage" style={{ width: "90%" }} />
-                  </div> */}
+                <li>
+                  <div className="name">Kubernetes Operators in Go (Operator SDK, OLM)</div>
                 </li>
-                <li className="border-line-h">
-                  <div className="name">Mandarin</div>
-                  {/* <div className="progress">
-                    <div className="percentage" style={{ width: "60%" }} />
-                  </div> */}
+                <li>
+                  <div className="name">Helm & GitOps (Argo CD)</div>
                 </li>
-                <li className="border-line-h">
-                  <div className="name">Spanish</div>
-                  {/* <div className="progress">
-                    <div className="percentage" style={{ width: "30%" }} />
-                  </div> */}
+                <li>
+                  <div className="name">Terraform & Ansible automation</div>
                 </li>
-                {/* <li>
-                  <div className="name">French</div>
-                  <div className="progress ">
-                    <div className="percentage" style={{ width: "70%" }} />
-                  </div>
-                </li> */}
+                <li>
+                  <div className="name">Observability: Prometheus metrics & alerting</div>
+                </li>
               </ul>
             </div>
           </div>
-          {/* skill item */}
           <div className="col col-d-6 col-t-6 col-m-12 border-line-v">
-            <div className="skills-list circles">
+            <div className="skills-list list">
               <div className="skill-title border-line-h">
                 <div className="icon">
                   <i className="fa fa-code" />
@@ -100,69 +73,28 @@ const Skills = () => {
               </div>
               <ul>
                 <li>
-                  <div className="name">Golang</div>
-                  <div className="progress p75">
-                    <span>75%</span>{" "}
-                    <div className="slice">
-                      <div className="bar" />
-                      <div className="fill" />
-                    </div>
-                  </div>
+                  <div className="name">Go</div>
                 </li>
                 <li>
-                  <div className="name">PYTHON / PHP</div>
-                  <div className="progress p85">
-                    <span>85%</span>{" "}
-                    <div className="slice">
-                      <div className="bar" />
-                      <div className="fill" />
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="name">JavaScript</div>
-                  <div className="progress p75">
-                    <span>75%</span>{" "}
-                    <div className="slice">
-                      <div className="bar" />
-                      <div className="fill" />
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="name">HTML / CSS</div>
-                  <div className="progress p95">
-                    <span>95%</span>{" "}
-                    <div className="slice">
-                      <div className="bar" />
-                      <div className="fill" />
-                    </div>
-                  </div>
+                  <div className="name">Python</div>
                 </li>
               </ul>
             </div>
           </div>
-          {/* skill item */}
           <div className="col col-d-6 col-t-6 col-m-12 border-line-v">
             <div className="skills-list list">
               <div className="skill-title border-line-h">
                 <div className="icon">
-                  <i className="fa fa-list" />
+                  <i className="fa fa-users" />
                 </div>
-                <div className="name">Knowledge</div>
+                <div className="name">Teaching & Languages</div>
               </div>
               <ul>
                 <li>
-                  <div className="name">AWS Administration</div>
+                  <div className="name">Technical workshops, demos & conference talks</div>
                 </li>
                 <li>
-                  <div className="name">Website hosting</div>
-                </li>
-                <li>
-                  <div className="name">LMS(OpenedX) Website development and hosting</div>
-                </li>
-                <li>
-                  <div className="name">Openshift</div>
+                  <div className="name">English, Mandarin, Spanish (fluent)</div>
                 </li>
               </ul>
             </div>
