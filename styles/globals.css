@@ -493,3 +493,66 @@ img.mfp-img {
     margin-right: 0;
   }
 }
+
+/* ---- Sticky Talks / Education headings ----
+   Headings stay put while that column scrolls. Education sits above Talks
+   in the stacking order so it covers cards passing underneath. */
+.talks-edu-pane > .resume-title {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  background-color: #fff;
+  background-clip: padding-box;
+  padding: 15px 0 16px;
+  box-shadow: 0 10px 0 0 #fff;
+}
+.talks-edu-pane > .resume-title .icon {
+  background-color: #fff;
+}
+.talks-edu-pane > .resume-items + .resume-title {
+  z-index: 7;
+}
+
+/* ---- Site credit pills — Option C (live) ----
+   Green badge plus two GitHub pills on the home profile card. */
+.site-credit-c {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin: 14px 12px 4px;
+  padding: 0 8px;
+}
+.site-credit-c .site-credit-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #2f6b36;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.site-credit-c .site-credit-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: #d8edd9;
+  color: #1a2e1c;
+  border: 1px solid rgba(47, 107, 54, 0.22);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.site-credit-c .site-credit-pill .fa {
+  color: #2f6b36;
+}
+.site-credit-c .site-credit-pill:hover,
+.site-credit-c .site-credit-pill:focus-visible {
+  background: #c5e3c7;
+  outline: none;
+}

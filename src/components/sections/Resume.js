@@ -150,7 +150,7 @@ const ResumeSection = () => {
           {/* talks + education: its own pane, does not move when Experience scrolls */}
           <div className="col col-d-6 col-t-6 col-m-12 border-line-v">
             <div className="resume-pane talks-edu-pane" tabIndex={0} aria-label="Talks and education (scrollable)" data-ux-pane="talks-edu">
-            <div className="resume-title border-line-h">
+            <div className="resume-title border-line-h sticky-section-title">
               <div className="icon">
                 <i className="fa fa-microphone" />
               </div>
@@ -212,7 +212,7 @@ const ResumeSection = () => {
                 <div className="company">Cloud Native Rejekts EU (Valencia) — with Sid Kattoju, Yuri Oliveira Sa, Manna Kong, and Soundharya Pabba</div>
               </div>
             </div>
-            <div className="resume-title border-line-h">
+            <div className="resume-title border-line-h sticky-section-title">
               <div className="icon">
                 <i className="fa fa-university" />
               </div>

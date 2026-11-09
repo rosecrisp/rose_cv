@@ -12,6 +12,7 @@ import ContactForm from "../src/components/sections/ContactForm";
 import ContactInfo from "../src/components/sections/ContactInfo";
 import FunFact from "../src/components/sections/FunFact";
 import Pricing from "../src/components/sections/Pricing";
+import SiteCredit from "../src/components/sections/SiteCredit";
 import Quote from "../src/components/sections/Quote";
 import ResumeSection from "../src/components/sections/Resume";
 import Services from "../src/components/sections/Services";
@@ -106,6 +107,7 @@ const Index3 = () => {
               <span className="ion ion-android-download" />
             </a>
           </div>
+          <SiteCredit />
         </div>
       </Home>
       <ContentContainer>
