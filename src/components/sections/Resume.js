@@ -7,7 +7,8 @@ const jobs = [
     lead: "Senior Software Engineer and Educator; partner engineering for OpenShift.",
     bullets: [
       "Design and deploy proof-of-concept AI workloads on OpenShift, including GPU-backed RAG chatbots and LLM serving with KServe and vLLM on OpenShift AI.",
-      "Own engineering work for ISV enablement and partner certification, from first proof of concept through certification.",
+      "Partner with ISVs to get their applications certified and listed in the Red Hat Ecosystem Catalog, from the first proof of concept through certification.",
+      "Contribute to and run the Red Hat Best Practices for Kubernetes test suite (certsuite). I add new test cases and validate 50+ partner operators on every new OpenShift release, alerting stakeholders when an operator doesn't pass certification.",
       "Lead Red Hat's Kubernetes Operator Framework workshops, training partners to build, package, and certify operators.",
       "Built a Red Hat Developer Hub (Backstage) golden-path template that automates GitOps repo scaffolding, Argo CD, and Helm deployments for GPU-backed RAG workloads, turning a multi-team manual setup into a self-service flow (DevConf.US 2025).",
     ],
@@ -43,8 +44,10 @@ const jobs = [
   },
 ];
 
-/* Split lead phrase (first ~3 words, or through first early comma) for accent styling; wording unchanged. */
+/* Split lead phrase (opening sentence, first early comma, or first ~3 words) for accent styling; wording unchanged. */
 const splitBulletLead = (text) => {
+  const sentence = text.match(/^(.{20,120}?\.)\s+(\S[\s\S]*)$/);
+  if (sentence) return [sentence[1], " " + sentence[2]];
   const comma = text.indexOf(",");
   if (comma > 8 && comma < 48) {
     return [text.slice(0, comma), text.slice(comma)];
@@ -149,14 +152,14 @@ const ResumeSection = () => {
           </div>
           {/* talks + education: its own pane, does not move when Experience scrolls */}
           <div className="col col-d-6 col-t-6 col-m-12 border-line-v">
-            <div className="resume-pane" tabIndex={0} aria-label="Talks and education (scrollable)">
-            <div className="resume-title border-line-h">
+            <div className="resume-pane talks-edu-pane" tabIndex={0} aria-label="Talks and education (scrollable)" data-ux-pane="talks-edu">
+            <div className="resume-title border-line-h sticky-section-title">
               <div className="icon">
                 <i className="fa fa-microphone" />
               </div>
               <div className="name">Talks &amp; Workshops</div>
             </div>
-            <div className="resume-items">
+            <div className="resume-items talk-cards">
               <div className="resume-item border-line-h active">
                 <div className="date">2025</div>
                 <div className="name talk-title">
@@ -212,13 +215,13 @@ const ResumeSection = () => {
                 <div className="company">Cloud Native Rejekts EU (Valencia) — with Sid Kattoju, Yuri Oliveira Sa, Manna Kong, and Soundharya Pabba</div>
               </div>
             </div>
-            <div className="resume-title border-line-h">
+            <div className="resume-title border-line-h sticky-section-title">
               <div className="icon">
                 <i className="fa fa-university" />
               </div>
               <div className="name">Education</div>
             </div>
-            <div className="resume-items">
+            <div className="resume-items edu-cards">
               <div className="resume-item border-line-h active">
                 <div className="date">1989 - 1992</div>
                 <div className="name">North Carolina State University</div>

@@ -216,37 +216,34 @@ img.mfp-img {
   text-decoration: underline;
 }
 
-/* ---- Experience job cards — Option F (live) ----
-   Green header + green-tint panel; each bullet a white mini-card.
-   Bold lead phrases; real markers. Accordion/scroll unchanged. */
+/* ---- Experience job cards — Option D1 (live) ----
+   White card, green left border, green date pill. Bullets are plain text
+   with a green dot. No green header or tinted panel. */
 .exp-job-cards {
-  --exp-header-bg: #2f6b36;
-  --exp-header-fg: #ffffff;
-  --exp-header-muted: rgba(255, 255, 255, 0.88);
-  --exp-header-date-border: rgba(255, 255, 255, 0.75);
-  --exp-header-date-fg: #ffffff;
-  --exp-body-bg: #d8edd9;
-  --exp-body-fg: #1a2e1c;
-  --exp-chevron: #ffffff;
   --exp-accent: #2f6b36;
-  --exp-marker: #3d8a45;
-  --exp-bullet-row-bg: #ffffff;
-  --exp-bullet-row-border: rgba(61, 138, 69, 0.22);
-  --exp-lead-fg: #4a6350;
-  --exp-card-radius: 10px;
-  --exp-card-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  --exp-card-gap: 16px;
+  --exp-title: #1a2e1c;
+  --exp-meta: #4a6350;
+  --exp-card-bg: #ffffff;
+  --exp-card-border: rgba(47, 107, 54, 0.16);
+  --exp-card-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --exp-radius: 10px;
+  --exp-gap: 12px;
+  --exp-badge-bg: #2f6b36;
+  --exp-badge-fg: #ffffff;
+  --exp-marker: #2f6b36;
+  --exp-chevron: #2f6b36;
+  display: flex;
+  flex-direction: column;
+  gap: var(--exp-gap);
 }
-
 .exp-job-cards > .resume-item.job-accordion {
-  margin: 0 0 var(--exp-card-gap) 0;
+  margin: 0 !important;
   overflow: hidden;
-  border-radius: var(--exp-card-radius);
+  border-radius: var(--exp-radius);
+  background: var(--exp-card-bg);
+  border: 1px solid var(--exp-card-border);
+  border-left: 4px solid var(--exp-accent);
   box-shadow: var(--exp-card-shadow);
-  background: var(--exp-body-bg);
-}
-.exp-job-cards > .resume-item.job-accordion:last-child {
-  margin-bottom: 0;
 }
 .exp-job-cards > .resume-item.job-accordion:after,
 .exp-job-cards > .resume-item.job-accordion.border-line-h:after {
@@ -254,47 +251,53 @@ img.mfp-img {
 }
 .exp-job-cards .job-accordion-heading {
   margin: 0;
-  background: var(--exp-header-bg);
+  background: transparent;
 }
 .exp-job-cards .job-accordion-toggle,
 .exp-job-cards .job-accordion-toggle:focus {
   width: 100%;
   text-align: left;
-  color: var(--exp-header-fg) !important;
+  color: inherit !important;
   background: transparent !important;
   border: 0;
-  padding: 14px 16px !important;
+  padding: 12px 14px !important;
   cursor: pointer;
 }
 .exp-job-cards .job-accordion-toggle:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid #2f6b36;
   outline-offset: -4px;
+  border-radius: 6px;
 }
 .exp-job-cards .job-accordion-toggle:hover .name {
-  color: #fff !important;
+  color: var(--exp-accent) !important;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 .exp-job-cards .resume-item.job-accordion .date {
+  display: inline-block !important;
   margin: 0 0 8px 0 !important;
-  color: var(--exp-header-date-fg) !important;
-  border-color: var(--exp-header-date-border) !important;
-  background: transparent !important;
-}
-.exp-job-cards .resume-item.job-accordion.active .date,
-.exp-job-cards .resume-item.job-accordion.is-open .date {
-  border-color: #fff !important;
-  color: #fff !important;
-}
-.exp-job-cards .resume-item.job-accordion .name {
-  color: var(--exp-header-fg) !important;
+  padding: 3px 10px !important;
+  border-radius: 999px !important;
   font-weight: 700 !important;
-  text-transform: none !important;
-  font-size: 16px !important;
+  font-size: 12px !important;
   line-height: 1.3 !important;
 }
+.exp-job-cards .resume-item.job-accordion .date,
+.exp-job-cards .resume-item.job-accordion.active .date,
+.exp-job-cards .resume-item.job-accordion.is-open .date {
+  border: none !important;
+  background: var(--exp-badge-bg) !important;
+  color: var(--exp-badge-fg) !important;
+}
+.exp-job-cards .resume-item.job-accordion .name {
+  color: var(--exp-title) !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  font-size: 15px !important;
+  line-height: 1.35 !important;
+}
 .exp-job-cards .resume-item.job-accordion .company {
-  color: var(--exp-header-muted) !important;
+  color: var(--exp-meta) !important;
   margin: 4px 0 0 0 !important;
   text-transform: none !important;
   font-size: 13px !important;
@@ -304,26 +307,25 @@ img.mfp-img {
   margin-top: 28px !important;
 }
 .exp-job-cards .job-accordion.is-open .job-accordion-chevron {
-  color: var(--exp-chevron) !important;
+  color: var(--exp-accent) !important;
 }
 .exp-job-cards .job-accordion-panel {
-  background: var(--exp-body-bg);
-  color: var(--exp-body-fg);
-  border-left: 4px solid #3d8a45;
+  background: transparent;
+  color: var(--exp-title);
+  border-left: none;
 }
 .exp-job-cards .job-accordion-inner {
-  padding: 0 16px;
-  color: var(--exp-body-fg);
+  padding: 0 14px;
+  color: var(--exp-title);
 }
 .exp-job-cards .job-accordion.is-open .job-accordion-inner {
-  padding: 14px 16px 16px 16px !important;
+  padding: 0 14px 14px 14px !important;
 }
 .exp-job-cards .job-lead {
-  margin: 0 0 12px 0 !important;
+  margin: 0 0 10px 0 !important;
   font-size: 13px !important;
   line-height: 1.4 !important;
-  color: var(--exp-lead-fg) !important;
-  opacity: 0.92;
+  color: var(--exp-meta) !important;
 }
 .exp-job-cards .job-lead em {
   font-style: italic;
@@ -336,35 +338,34 @@ img.mfp-img {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 .exp-job-cards .job-bullet {
   display: flex;
   align-items: flex-start;
   gap: 10px;
   margin: 0;
-  padding: 10px 12px;
-  background: var(--exp-bullet-row-bg);
-  border: 1px solid var(--exp-bullet-row-border);
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 .exp-job-cards .job-bullet-marker {
-  flex: 0 0 14px;
-  width: 14px;
-  height: 14px;
-  margin-top: 4px;
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  margin-top: 7px;
   border-radius: 50%;
   background: var(--exp-marker);
-  box-shadow: inset 0 0 0 3px var(--exp-bullet-row-bg);
-  position: relative;
+  box-shadow: none;
 }
 .exp-job-cards .job-bullet-text {
   flex: 1;
-  font-size: 14.5px;
+  font-size: 14px;
   line-height: 1.45;
-  color: var(--exp-body-fg);
-  font-weight: 500;
+  color: #1a2e1c;
+  font-weight: 400;
 }
 .exp-job-cards .job-bullet-lead {
   font-weight: 700;
@@ -379,4 +380,180 @@ img.mfp-img {
   .exp-job-cards .job-accordion-toggle:focus {
     padding: 12px 14px !important;
   }
+}
+
+/* ---- Talks & Education cards — Option G (live) ----
+   White talk cards and a green-tint education card. Year is a pill badge.
+   Experience accordion and column scroll are unchanged. */
+.talk-cards {
+  --talk-card-bg: #ffffff;
+  --talk-card-border: rgba(47, 107, 54, 0.16);
+  --talk-card-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --talk-accent: #2f6b36;
+  --talk-badge-bg: #2f6b36;
+  --talk-badge-fg: #ffffff;
+  --talk-title: #1a2e1c;
+  --talk-title-link: #1a2e1c;
+  --talk-title-hover: #2f6b36;
+  --talk-meta: #4a6350;
+  --talk-radius: 10px;
+  --talk-gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--talk-gap);
+}
+.edu-cards {
+  --edu-card-bg: #eef7ef;
+  --edu-accent: #2f6b36;
+  --edu-badge-bg: #d8edd9;
+  --edu-badge-fg: #2f6b36;
+  --edu-title: #1a2e1c;
+  --edu-meta: #4a6350;
+  --edu-radius: 10px;
+  margin-top: 4px;
+}
+.talk-cards > .resume-item {
+  margin: 0 !important;
+  background: var(--talk-card-bg);
+  border-radius: var(--talk-radius);
+  border: 1px solid var(--talk-card-border);
+  border-left: 4px solid var(--talk-accent);
+  box-shadow: var(--talk-card-shadow);
+  padding: 12px 14px !important;
+}
+.talk-cards > .resume-item:after,
+.talk-cards > .resume-item.border-line-h:after {
+  display: none !important;
+}
+.talk-cards > .resume-item .date {
+  display: inline-block;
+  margin: 0 0 8px 0 !important;
+  padding: 3px 10px !important;
+  border-radius: 999px;
+  border: none !important;
+  background: var(--talk-badge-bg) !important;
+  color: var(--talk-badge-fg) !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  line-height: 1.3 !important;
+}
+.talk-cards > .resume-item .name.talk-title {
+  color: var(--talk-title) !important;
+  margin: 0 0 4px 0 !important;
+}
+.talk-cards > .resume-item .name.talk-title a {
+  color: var(--talk-title-link) !important;
+  text-decoration: underline;
+  text-decoration-color: rgba(47, 107, 54, 0.35);
+  text-underline-offset: 3px;
+}
+.talk-cards > .resume-item .name.talk-title a:hover,
+.talk-cards > .resume-item .name.talk-title a:focus-visible {
+  color: var(--talk-title-hover) !important;
+  text-decoration-thickness: 2px;
+}
+.talk-cards > .resume-item .company {
+  color: var(--talk-meta) !important;
+  margin: 0 !important;
+}
+.edu-cards > .resume-item {
+  margin: 0 !important;
+  background: var(--edu-card-bg);
+  border-radius: var(--edu-radius);
+  border: 1px solid rgba(47, 107, 54, 0.12);
+  border-left: 4px solid var(--edu-accent);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  padding: 12px 14px !important;
+}
+.edu-cards > .resume-item:after,
+.edu-cards > .resume-item.border-line-h:after {
+  display: none !important;
+}
+.edu-cards > .resume-item .date {
+  display: inline-block;
+  margin: 0 0 8px 0 !important;
+  padding: 3px 10px !important;
+  border-radius: 999px;
+  border: none !important;
+  background: var(--edu-badge-bg) !important;
+  color: var(--edu-badge-fg) !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+}
+.edu-cards > .resume-item .name {
+  color: var(--edu-title) !important;
+}
+.edu-cards > .resume-item .company,
+.edu-cards > .resume-item p {
+  color: var(--edu-meta) !important;
+}
+@media (max-width: 560px) {
+  .talk-cards > .resume-item,
+  .edu-cards > .resume-item {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* ---- Sticky Talks / Education headings ----
+   Headings stay put while that column scrolls. Education sits above Talks
+   in the stacking order so it covers cards passing underneath. */
+.talks-edu-pane > .resume-title {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  background-color: #fff;
+  background-clip: padding-box;
+  padding: 15px 0 16px;
+  box-shadow: 0 10px 0 0 #fff;
+}
+.talks-edu-pane > .resume-title .icon {
+  background-color: #fff;
+}
+.talks-edu-pane > .resume-items + .resume-title {
+  z-index: 7;
+}
+
+/* ---- Site credit pills — Option C (live) ----
+   Green badge plus two GitHub pills on the home profile card. */
+.site-credit-c {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin: 14px 12px 4px;
+  padding: 0 8px;
+}
+.site-credit-c .site-credit-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #2f6b36;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.site-credit-c .site-credit-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: #d8edd9;
+  color: #1a2e1c;
+  border: 1px solid rgba(47, 107, 54, 0.22);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.site-credit-c .site-credit-pill .fa {
+  color: #2f6b36;
+}
+.site-credit-c .site-credit-pill:hover,
+.site-credit-c .site-credit-pill:focus-visible {
+  background: #c5e3c7;
+  outline: none;
 }
