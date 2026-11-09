@@ -7,7 +7,7 @@ const jobs = [
     lead: "Senior Software Engineer and Educator; partner engineering for OpenShift.",
     bullets: [
       "Design and deploy proof-of-concept AI workloads on OpenShift, including GPU-backed RAG chatbots and LLM serving with KServe and vLLM on OpenShift AI.",
-      "Own engineering work for ISV enablement and partner certification, from first proof of concept through certification.",
+      "Partner with ISVs to get their applications certified and listed in the Red Hat Ecosystem Catalog, from the first proof of concept through certification.",
       "Lead Red Hat's Kubernetes Operator Framework workshops, training partners to build, package, and certify operators.",
       "Built a Red Hat Developer Hub (Backstage) golden-path template that automates GitOps repo scaffolding, Argo CD, and Helm deployments for GPU-backed RAG workloads, turning a multi-team manual setup into a self-service flow (DevConf.US 2025).",
     ],
