@@ -380,3 +380,116 @@ img.mfp-img {
     padding: 12px 14px !important;
   }
 }
+
+/* ---- Talks & Education cards — Option G (live) ----
+   White talk cards and a green-tint education card. Year is a pill badge.
+   Experience accordion and column scroll are unchanged. */
+.talk-cards {
+  --talk-card-bg: #ffffff;
+  --talk-card-border: rgba(47, 107, 54, 0.16);
+  --talk-card-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --talk-accent: #2f6b36;
+  --talk-badge-bg: #2f6b36;
+  --talk-badge-fg: #ffffff;
+  --talk-title: #1a2e1c;
+  --talk-title-link: #1a2e1c;
+  --talk-title-hover: #2f6b36;
+  --talk-meta: #4a6350;
+  --talk-radius: 10px;
+  --talk-gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--talk-gap);
+}
+.edu-cards {
+  --edu-card-bg: #eef7ef;
+  --edu-accent: #2f6b36;
+  --edu-badge-bg: #d8edd9;
+  --edu-badge-fg: #2f6b36;
+  --edu-title: #1a2e1c;
+  --edu-meta: #4a6350;
+  --edu-radius: 10px;
+  margin-top: 4px;
+}
+.talk-cards > .resume-item {
+  margin: 0 !important;
+  background: var(--talk-card-bg);
+  border-radius: var(--talk-radius);
+  border: 1px solid var(--talk-card-border);
+  border-left: 4px solid var(--talk-accent);
+  box-shadow: var(--talk-card-shadow);
+  padding: 12px 14px !important;
+}
+.talk-cards > .resume-item:after,
+.talk-cards > .resume-item.border-line-h:after {
+  display: none !important;
+}
+.talk-cards > .resume-item .date {
+  display: inline-block;
+  margin: 0 0 8px 0 !important;
+  padding: 3px 10px !important;
+  border-radius: 999px;
+  border: none !important;
+  background: var(--talk-badge-bg) !important;
+  color: var(--talk-badge-fg) !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  line-height: 1.3 !important;
+}
+.talk-cards > .resume-item .name.talk-title {
+  color: var(--talk-title) !important;
+  margin: 0 0 4px 0 !important;
+}
+.talk-cards > .resume-item .name.talk-title a {
+  color: var(--talk-title-link) !important;
+  text-decoration: underline;
+  text-decoration-color: rgba(47, 107, 54, 0.35);
+  text-underline-offset: 3px;
+}
+.talk-cards > .resume-item .name.talk-title a:hover,
+.talk-cards > .resume-item .name.talk-title a:focus-visible {
+  color: var(--talk-title-hover) !important;
+  text-decoration-thickness: 2px;
+}
+.talk-cards > .resume-item .company {
+  color: var(--talk-meta) !important;
+  margin: 0 !important;
+}
+.edu-cards > .resume-item {
+  margin: 0 !important;
+  background: var(--edu-card-bg);
+  border-radius: var(--edu-radius);
+  border: 1px solid rgba(47, 107, 54, 0.12);
+  border-left: 4px solid var(--edu-accent);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  padding: 12px 14px !important;
+}
+.edu-cards > .resume-item:after,
+.edu-cards > .resume-item.border-line-h:after {
+  display: none !important;
+}
+.edu-cards > .resume-item .date {
+  display: inline-block;
+  margin: 0 0 8px 0 !important;
+  padding: 3px 10px !important;
+  border-radius: 999px;
+  border: none !important;
+  background: var(--edu-badge-bg) !important;
+  color: var(--edu-badge-fg) !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+}
+.edu-cards > .resume-item .name {
+  color: var(--edu-title) !important;
+}
+.edu-cards > .resume-item .company,
+.edu-cards > .resume-item p {
+  color: var(--edu-meta) !important;
+}
+@media (max-width: 560px) {
+  .talk-cards > .resume-item,
+  .edu-cards > .resume-item {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

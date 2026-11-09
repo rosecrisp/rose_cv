@@ -149,14 +149,14 @@ const ResumeSection = () => {
           </div>
           {/* talks + education: its own pane, does not move when Experience scrolls */}
           <div className="col col-d-6 col-t-6 col-m-12 border-line-v">
-            <div className="resume-pane" tabIndex={0} aria-label="Talks and education (scrollable)">
+            <div className="resume-pane talks-edu-pane" tabIndex={0} aria-label="Talks and education (scrollable)" data-ux-pane="talks-edu">
             <div className="resume-title border-line-h">
               <div className="icon">
                 <i className="fa fa-microphone" />
               </div>
               <div className="name">Talks &amp; Workshops</div>
             </div>
-            <div className="resume-items">
+            <div className="resume-items talk-cards">
               <div className="resume-item border-line-h active">
                 <div className="date">2025</div>
                 <div className="name talk-title">
@@ -218,7 +218,7 @@ const ResumeSection = () => {
               </div>
               <div className="name">Education</div>
             </div>
-            <div className="resume-items">
+            <div className="resume-items edu-cards">
               <div className="resume-item border-line-h active">
                 <div className="date">1989 - 1992</div>
                 <div className="name">North Carolina State University</div>
