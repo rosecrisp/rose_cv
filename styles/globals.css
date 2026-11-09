@@ -557,3 +557,15 @@ img.mfp-img {
   background: #c5e3c7;
   outline: none;
 }
+
+.works .works-slides-download {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2f6b36;
+  text-decoration: underline;
+}
+.works .works-slides-download:hover {
+  color: #1e4a24;
+}
