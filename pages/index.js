@@ -111,20 +111,20 @@ const Index3 = () => {
         </div>
       </Home>
       <ContentContainer>
-        <About>
-          <AboutMe bio={bio} />
-        </About>
         <Resume>
           <ResumeSection />
           <Skills />
           <Quote />
         </Resume>
-        <Work>
-          <RecentWorks />
-        </Work>
         <Blog>
           <BlogSection />
         </Blog>
+        <Work>
+          <RecentWorks />
+        </Work>
+        <About>
+          <AboutMe bio={bio} />
+        </About>
         <Contact>
           <ContactInfo />
           <ContactForm />
